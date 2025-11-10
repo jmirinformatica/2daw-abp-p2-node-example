@@ -44,15 +44,30 @@ router.post('/register', async function(req, res) {
 
 // Authenticate the user and get a JSON Web Token to include in the header of future requests.
 router.post('/login', async function(req, res) {
-  if (!req.body.email || !req.body.password) {
+  let email, contrasenya;
+
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith('Basic ')) {
+      try {
+          const base64Credentials = authHeader.split(' ')[1];
+          const credentials = Buffer.from(base64Credentials, 'base64').toString('utf-8');
+          const [userEmail, userPassword] = credentials.split(':');
+          email = userEmail;
+          contrasenya = userPassword;
+      } catch (err) {
+          return res.status(400).json({ message: 'Invalid Basic auth format.' });
+      }
+  } else if (req.body.email && req.body.contrasenya) {        
+      email = req.body.email;
+      contrasenya = req.body.contrasenya;
+  }
+
+  if (!email || !contrasenya) {
     return res.json({
       success: false,
       message: 'Please enter email and password.'
     });
   }
-
-  const email = req.body.email;
-  const password = req.body.password;
 
   const user = await User.findOne({ email: email });
   if(!user) {
@@ -62,7 +77,7 @@ router.post('/login', async function(req, res) {
     });
   }
 
-  if(bcrypt.compareSync(password, user.password)){
+  if(bcrypt.compareSync(contrasenya, user.password)){
     // Create token if the password matched and no error was thrown
     const payload = {
       user_id: user.id,

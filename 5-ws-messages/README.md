@@ -1,4 +1,4 @@
-# Exemple de chat bàsic amb websockets
+# Exemple de nodejs amb websockets
 
 Codi fet a partir d'aquests dos articles:
 
