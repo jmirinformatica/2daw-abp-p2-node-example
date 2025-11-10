@@ -6,6 +6,6 @@ module.exports = {
     secret: 'Little secret, big responsability...'
   },
   database: {
-    local: 'mongodb+srv://alfonsodasilva:__CONTRASSENYA__@clustermir.qtrppnw.mongodb.net/exemple_4_jwt?appName=ClusterMir'
+    local: 'mongodb+srv://alfonsodasilva:__CONTRASENYA__@clustermir.qtrppnw.mongodb.net/exemple_4_jwt?appName=ClusterMir'
   }
 };

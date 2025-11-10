@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 
-const MONGO_URI = 'mongodb+srv://alfonsodasilva:__CONTRASSENYA__@clustermir.qtrppnw.mongodb.net/exemple_2_api_crud?appName=ClusterMir';
+const MONGO_URI = 'mongodb+srv://alfonsodasilva:__CONTRASENYA__@clustermir.qtrppnw.mongodb.net/exemple_2_api_crud?appName=ClusterMir';
 
 mongoose
   .connect(MONGO_URI, {})
