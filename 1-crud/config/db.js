@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 //mongodb uri
-const MONGO_URI = 'mongodb+srv://alfonsodasilva:5RIOMdgiRIYgMP1E@clustermir.qtrppnw.mongodb.net/exemple_1_crud?appName=ClusterMir';
+const MONGO_URI = 'mongodb+srv://alfonsodasilva:__CONTRASSENYA__@clustermir.qtrppnw.mongodb.net/exemple_1_crud?appName=ClusterMir';
 
 //connect to db
 const connectDB = async () => {
