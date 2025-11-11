@@ -8,6 +8,19 @@
 	"item": [
 		{
 			"name": "REGISTER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json();",
+							"pm.collectionVariables.set(\"email\", jsonResponse.data.email);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -16,7 +29,7 @@
 					"urlencoded": [
 						{
 							"key": "email",
-							"value": "{{email}}",
+							"value": "{{$randomEmail}}",
 							"type": "text"
 						},
 						{
@@ -45,7 +58,7 @@
 			"response": []
 		},
 		{
-			"name": "LOGIN",
+			"name": "LOGIN-FORM",
 			"event": [
 				{
 					"listen": "test",
@@ -95,7 +108,7 @@
 			"response": []
 		},
 		{
-			"name": "LOGIN2",
+			"name": "LOGIN-BASIC-AUTH",
 			"event": [
 				{
 					"listen": "test",

@@ -29,7 +29,7 @@ Content-Length: 39
 email=alfonso%40mir.cat&password=patata
 ```
 
-### Authenticate user: `/jwt-auth/login`
+### Authenticate user with form: `/jwt-auth/login`
 
 ```
 POST /jwt-auth/login HTTP/1.1
@@ -45,7 +45,22 @@ Content-Length: 39
 email=alfonso%40mir.cat&password=patata
 ```
 
-### Access restricted route: `/dashboard`
+### Authenticate user with basic auth: `/jwt-auth/login`
+
+```
+POST /jwt-auth/login HTTP/1.1
+Authorization: Basic TW9uc2VycmF0X0Nyb29rczk1QGdtYWlsLmNvbTpwYXRhdGE=
+User-Agent: PostmanRuntime/7.39.1
+Accept: */*
+Cache-Control: no-cache
+Postman-Token: 8ed3b30c-7e40-4df3-b755-ff60d777f59d
+Host: 127.0.0.1:3000
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 0
+```
+
+### Access restricted route: `/restricted`
 
 You need put the `jwt token` in the request header, using `Authorization` key field and concat `"Bearer " + jwtToken` in the value field.
 ```

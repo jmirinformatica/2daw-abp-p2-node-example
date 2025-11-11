@@ -38,7 +38,9 @@ router.post('/register', async function(req, res) {
   await newUser.save();
   res.json({
     success: true,
-    data: {}
+    data: {
+      email: email
+    }
   });
 });
 
@@ -48,18 +50,18 @@ router.post('/login', async function(req, res) {
 
   const authHeader = req.headers.authorization;
   if (authHeader && authHeader.startsWith('Basic ')) {
-      try {
-          const base64Credentials = authHeader.split(' ')[1];
-          const credentials = Buffer.from(base64Credentials, 'base64').toString('utf-8');
-          const [userEmail, userPassword] = credentials.split(':');
-          email = userEmail;
-          contrasenya = userPassword;
-      } catch (err) {
-          return res.status(400).json({ message: 'Invalid Basic auth format.' });
-      }
-  } else if (req.body.email && req.body.contrasenya) {        
-      email = req.body.email;
-      contrasenya = req.body.contrasenya;
+    try {
+        const base64Credentials = authHeader.split(' ')[1];
+        const credentials = Buffer.from(base64Credentials, 'base64').toString('utf-8');
+        const [userEmail, userPassword] = credentials.split(':');
+        email = userEmail;
+        contrasenya = userPassword;
+    } catch (err) {
+        return res.status(400).json({ message: 'Invalid Basic auth format.' });
+    }
+  } else if (req.body.email && req.body.password) {        
+    email = req.body.email;
+    contrasenya = req.body.password;
   }
 
   if (!email || !contrasenya) {
