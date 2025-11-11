@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../userContext';
 
 export default function Dashboard() {
-    const { user, askForData, setAskForData } = useContext(UserContext);
+    const { user, askForTime, setAskForTime, notifications } = useContext(UserContext);
     const [horaDelServidor, setHoraDelServidor] = useState("");
     
     function actualitzaHoraDelServidor() {
@@ -17,14 +17,14 @@ export default function Dashboard() {
     }, []);
 
     useEffect(() => {
-        if(askForData) {
+        if(askForTime) {
             actualitzaHoraDelServidor();
-            setAskForData(false);
+            setAskForTime(false);
         }
-    }, [askForData]);
+    }, [askForTime]);
 
     function cridaAlServidor() {
-        fetch('http://localhost:3000/notify', {
+        fetch('http://localhost:3000/update_time_for_everybody', {
             method: 'POST',
         })
         .then(response => {
@@ -41,6 +41,12 @@ export default function Dashboard() {
             <button onClick={cridaAlServidor}>Actualitza l'hora del servidor a tots els clients</button>
             <p>This is a protected area of the application.</p>
             <p>Hora del servidor: {horaDelServidor}</p>
+            <h2>Notifications:</h2>
+            <ul>
+                {notifications.map((note, index) => (
+                    <li key={index}>{note}</li>
+                ))}
+            </ul>
         </div>
     );
 }

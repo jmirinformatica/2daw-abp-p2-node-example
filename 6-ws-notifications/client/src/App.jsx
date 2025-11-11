@@ -5,7 +5,8 @@ import Dashboard from './components/Dashboard.jsx';
 
 function App() {
   const [user, setUser] = useState("");
-  const [askForData, setAskForData] = useState(false);
+  const [askForTime, setAskForTime] = useState(false);
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     if(!user) return;
@@ -19,8 +20,15 @@ function App() {
     };
 
     websocket.onmessage = (evt) => {
-      console.log('Message received:', evt);
-      setAskForData(true);
+      if(!evt.data) return;
+      const message = JSON.parse(evt.data);
+      console.log('WebSocket message received:', message);
+      
+      if(message.type === 'notification') {
+        setNotifications(prevNotifications => [...prevNotifications, message.content]);
+      } else if(message.type === 'update_time') {
+        setAskForTime(true);
+      }
     };
 
     websocket.onclose = () => {
@@ -33,7 +41,7 @@ function App() {
   }, [user]);
 
   return (
-    <UserContext.Provider value={{ user, setUser, askForData, setAskForData }}>    
+    <UserContext.Provider value={{ user, setUser, askForTime, setAskForTime, notifications }}>    
       {user ? <Dashboard /> : <Login />}
     </UserContext.Provider>
   );

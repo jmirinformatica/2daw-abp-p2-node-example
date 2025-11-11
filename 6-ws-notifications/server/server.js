@@ -17,8 +17,8 @@ app.get("/time", (req, res) => {
   res.json({ time: server_time });
 });
 
-app.post("/notify", (req, res) => {
-  wsserver.send_notification_to_all({ message: "update_time" });
+app.post("/update_time_for_everybody", (req, res) => {
+  wsserver.send_notification_to_all({ type: "update_time" });
   res.json({ msg: "Notifications sent to all connected clients." });
 });
 

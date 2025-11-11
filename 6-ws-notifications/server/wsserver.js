@@ -19,14 +19,20 @@ class WSServer {
             const json_message = JSON.parse(message);
             console.log('Received ws message from client:', json_message);
             ws.client_user = json_message.user;
+
+            //envio una notificació a tots els clients connectats
+            this.send_notification_to_all({
+                type: 'notification',
+                content: `User ${ws.client_user} has connected`
+            });
+
             this.client_map.set(ws.client_user, ws);
         });
     
         // Event listener for client disconnection
         ws.on('close', () => {
             if(ws.client_user) {
-                console.log('WS client disconnected:', ws.client_user);
-                this.client_map.delete(ws.client_user);
+                this.remove_user(ws.client_user);
             } else {
                 console.log('Anonymous ws client disconnected');
             }
@@ -39,8 +45,7 @@ class WSServer {
             if (ws.readyState === WebSocket.OPEN) {
                 ws.send(JSON.stringify(notification));
             } else {
-                console.log('Removing disconnected ws client for user:', user);
-                this.client_map.delete(user);
+                this.remove_user(user);
             }
         } else {
             console.log('No active WebSocket connection for user:', user);
@@ -52,10 +57,19 @@ class WSServer {
             if (ws.readyState === WebSocket.OPEN) {
                 ws.send(JSON.stringify(notification));
             } else {
-                console.log('Removing disconnected ws client for user:', user);
-                this.client_map.delete(user);
+                this.remove_user(user);
             }
         }
+    }
+
+    remove_user(user) {
+        console.log('Removing disconnected ws client for user:', user);
+        this.client_map.delete(user);
+        //enviar notificació a tots els clients
+        this.send_notification_to_all({
+            type: 'notification',
+            content: `User ${user} has disconnected`
+        });
     }
 
     get_connected_users() {
