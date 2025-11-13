@@ -12,6 +12,10 @@ var UserSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  jwt_version: {
+    type: Number,
+    default: 0
   }
 });
 

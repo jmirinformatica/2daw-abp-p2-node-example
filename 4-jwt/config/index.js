@@ -3,9 +3,9 @@
  */
 module.exports = {
   auth: {
-    secret: 'Little secret, big responsability...'
+    secret: process.env.JWT_SECRET
   },
   database: {
-    local: 'mongodb+srv://alfonsodasilva:__CONTRASENYA__@clustermir.qtrppnw.mongodb.net/exemple_4_jwt?appName=ClusterMir'
+    local: process.env.MONGO_URI
   }
 };

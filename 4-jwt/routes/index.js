@@ -8,7 +8,8 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-// Example of required auth: protect dashboard route with JWT
+// Example of required auth without middlewares
+// (protect dashboard route with JWT)
 router.get('/restricted', passport.authenticate('jwt', {
   session: false
 }), function(req, res) {

@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "4cd65ede-400a-4e1c-a73e-67be958f0e0e",
+		"_postman_id": "ad177389-8e34-4213-90d8-db612030ed97",
 		"name": "4-jwt",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "28558423"
+		"_exporter_id": "19399681"
 	},
 	"item": [
 		{
@@ -17,13 +17,25 @@
 							"pm.collectionVariables.set(\"email\", jsonResponse.data.email);"
 						],
 						"type": "text/javascript",
-						"packages": {}
+						"packages": {},
+						"requests": {}
 					}
 				}
 			],
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
@@ -40,22 +52,101 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3000/jwt-auth/register",
-					"protocol": "http",
+					"raw": "{{URL_ENDPOINT}}/jwt-auth/register",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{URL_ENDPOINT}}"
 					],
-					"port": "3000",
 					"path": [
 						"jwt-auth",
 						"register"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "REGISTER",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "{{$randomEmail}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{contrasenya}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/jwt-auth/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"jwt-auth",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3b-GV4sIU8n7dNeNhxUVDtjZl+AtI8\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Nov 2025 15:41:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": {\n        \"email\": \"Tyreek_Marvin@yahoo.com\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "LOGIN-FORM",
@@ -67,13 +158,26 @@
 							"const jsonResponse = pm.response.json();",
 							"pm.collectionVariables.set(\"token\", jsonResponse.data.token);"
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
 					}
 				}
 			],
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
@@ -90,22 +194,90 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3000/jwt-auth/login",
-					"protocol": "http",
+					"raw": "{{URL_ENDPOINT}}/jwt-auth/login",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{URL_ENDPOINT}}"
 					],
-					"port": "3000",
 					"path": [
 						"jwt-auth",
 						"login"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "LOGIN-FORM",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{contrasenya}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/jwt-auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"jwt-auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "248"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f8-022TDfCFzW/Mx/4zkPRw3BBpMko\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Nov 2025 15:42:56 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjkxNWZjMjQ5NTYxYjZiYzViMzNmOTZiIiwidGltZXN0YW1wIjoxNzYzMDQ4NTc2NTkxLCJpYXQiOjE3NjMwNDg1NzYsImV4cCI6MTc2MzIyMTM3Nn0.T-wUPVmZYpum68ZnW4GfE4gTuC1b4CheBZPD98s0XX4\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "LOGIN-BASIC-AUTH",
@@ -118,7 +290,8 @@
 							"pm.collectionVariables.set(\"token\", jsonResponse.data.token);"
 						],
 						"type": "text/javascript",
-						"packages": {}
+						"packages": {},
+						"requests": {}
 					}
 				}
 			],
@@ -139,24 +312,89 @@
 					]
 				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://127.0.0.1:3000/jwt-auth/login",
-					"protocol": "http",
+					"raw": "{{URL_ENDPOINT}}/jwt-auth/login",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{URL_ENDPOINT}}"
 					],
-					"port": "3000",
 					"path": [
 						"jwt-auth",
 						"login"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "LOGIN-BASIC-AUTH",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:3000/jwt-auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"jwt-auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "248"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f8-W4NJDb+Fponku9bn9lA7cdkLnxQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Nov 2025 15:43:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjkxNWZjMjQ5NTYxYjZiYzViMzNmOTZiIiwidGltZXN0YW1wIjoxNzYzMDQ4NTk2Nzk3LCJpYXQiOjE3NjMwNDg1OTYsImV4cCI6MTc2MzIyMTM5Nn0.buKDSlIUTMLQJPszd18WPmmSV3pNNIjZFeyL9sfMnYc\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "RESTRICTED",
@@ -174,106 +412,79 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "Cache-Control",
-						"value": "no-cache",
-						"name": "cache-control",
-						"type": "text"
-					},
-					{
-						"key": "Postman-Token",
-						"value": "<calculated when request is sent>",
-						"name": "postman-token",
-						"type": "text"
-					},
-					{
-						"key": "Host",
-						"value": "<calculated when request is sent>",
-						"name": "host",
-						"type": "text"
-					},
-					{
-						"key": "User-Agent",
-						"value": "PostmanRuntime/7.39.1",
-						"name": "user-agent",
-						"type": "text"
-					},
-					{
 						"key": "Accept",
-						"value": "*/*",
-						"name": "accept",
-						"type": "text"
-					},
-					{
-						"key": "Accept-Encoding",
-						"value": "gzip, deflate, br",
-						"name": "accept-encoding",
-						"type": "text"
-					},
-					{
-						"key": "Connection",
-						"value": "keep-alive",
-						"name": "connection",
-						"type": "text"
-					},
-					{
-						"key": "Cache-Control",
-						"value": "no-cache",
-						"name": "cache-control",
-						"type": "text"
-					},
-					{
-						"key": "Postman-Token",
-						"value": "<calculated when request is sent>",
-						"name": "postman-token",
-						"type": "text"
-					},
-					{
-						"key": "Host",
-						"value": "<calculated when request is sent>",
-						"name": "host",
-						"type": "text"
-					},
-					{
-						"key": "User-Agent",
-						"value": "PostmanRuntime/7.39.1",
-						"name": "user-agent",
-						"type": "text"
-					},
-					{
-						"key": "Accept",
-						"value": "*/*",
-						"name": "accept",
-						"type": "text"
-					},
-					{
-						"key": "Accept-Encoding",
-						"value": "gzip, deflate, br",
-						"name": "accept-encoding",
-						"type": "text"
-					},
-					{
-						"key": "Connection",
-						"value": "keep-alive",
-						"name": "connection",
+						"value": "application/json",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:3000/restricted",
-					"protocol": "http",
+					"raw": "{{URL_ENDPOINT}}/restricted",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{URL_ENDPOINT}}"
 					],
-					"port": "3000",
 					"path": [
 						"restricted"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "RESTRICTED",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/restricted",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"restricted"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "123"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7b-st9avKi7jAvnpV79FUzJGxlehVs\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Nov 2025 15:44:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": {\n        \"message\": \"It worked! User id is: 6915fc249561b6bc5b33f96b and email is: tyreek_marvin@yahoo.com\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "LOGOUT",
@@ -291,107 +502,189 @@
 				"method": "DELETE",
 				"header": [
 					{
-						"key": "Cache-Control",
-						"value": "no-cache",
-						"name": "cache-control",
-						"type": "text"
-					},
-					{
-						"key": "Postman-Token",
-						"value": "<calculated when request is sent>",
-						"name": "postman-token",
-						"type": "text"
-					},
-					{
-						"key": "Host",
-						"value": "<calculated when request is sent>",
-						"name": "host",
-						"type": "text"
-					},
-					{
-						"key": "User-Agent",
-						"value": "PostmanRuntime/7.39.1",
-						"name": "user-agent",
-						"type": "text"
-					},
-					{
 						"key": "Accept",
-						"value": "*/*",
-						"name": "accept",
-						"type": "text"
-					},
-					{
-						"key": "Accept-Encoding",
-						"value": "gzip, deflate, br",
-						"name": "accept-encoding",
-						"type": "text"
-					},
-					{
-						"key": "Connection",
-						"value": "keep-alive",
-						"name": "connection",
-						"type": "text"
-					},
-					{
-						"key": "Cache-Control",
-						"value": "no-cache",
-						"name": "cache-control",
-						"type": "text"
-					},
-					{
-						"key": "Postman-Token",
-						"value": "<calculated when request is sent>",
-						"name": "postman-token",
-						"type": "text"
-					},
-					{
-						"key": "Host",
-						"value": "<calculated when request is sent>",
-						"name": "host",
-						"type": "text"
-					},
-					{
-						"key": "User-Agent",
-						"value": "PostmanRuntime/7.39.1",
-						"name": "user-agent",
-						"type": "text"
-					},
-					{
-						"key": "Accept",
-						"value": "*/*",
-						"name": "accept",
-						"type": "text"
-					},
-					{
-						"key": "Accept-Encoding",
-						"value": "gzip, deflate, br",
-						"name": "accept-encoding",
-						"type": "text"
-					},
-					{
-						"key": "Connection",
-						"value": "keep-alive",
-						"name": "connection",
+						"value": "application/json",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:3000/jwt-auth/logout",
-					"protocol": "http",
+					"raw": "{{URL_ENDPOINT}}/jwt-auth/logout",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{URL_ENDPOINT}}"
 					],
-					"port": "3000",
 					"path": [
 						"jwt-auth",
 						"logout"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "LOGOUT",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:3000/jwt-auth/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"jwt-auth",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "26"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1a-pIPrt4esgEyEkX/w62Rnrj9XXdg\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Nov 2025 15:45:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"data\": {}\n}"
+				}
+			]
+		},
+		{
+			"name": "RESTRICTED error",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL_ENDPOINT}}/restricted",
+					"host": [
+						"{{URL_ENDPOINT}}"
+					],
+					"path": [
+						"restricted"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "RESTRICTED error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:3000/restricted",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"restricted"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Nov 2025 15:58:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						}
+					],
+					"cookie": [],
+					"body": "Unauthorized"
+				}
+			]
 		}
 	],
 	"variable": [

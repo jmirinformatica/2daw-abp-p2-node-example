@@ -1,117 +1,15 @@
 var express = require('express');
 var router = express.Router();
-let jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-var User = require('../models/User');
-let config = require('../config');
-let passport = require('passport');
 
-// Register new users
-router.post('/register', async function(req, res) {
-  if (!req.body.email || !req.body.password) {
-    return res.json({
-      success: false,
-      message: 'Please enter email and password.'
-    });
-  }
+// Controllers
+const JWTAuthController = require('../controllers/jwtAuthController');
 
-  const email = req.body.email;
-  const password = req.body.password;
+// Middlewares
+const { ensureJWTAuthenticated } = require('../middlewares/jwt-auth');
 
-  const user = await User.findOne({ email: email });
-  if(user) {
-    return res.json({
-      success: false,
-      message: 'That email address already exists.'
-    });
-  }
-  
-  // Create a new user
-  const salt = bcrypt.genSaltSync(10);
-  const hash = bcrypt.hashSync(password, salt);
-  let newUser = new User({
-    email: email,
-    password: hash
-  });
-
-  //Save the new user
-  await newUser.save();
-  res.json({
-    success: true,
-    data: {
-      email: email
-    }
-  });
-});
-
-// Authenticate the user and get a JSON Web Token to include in the header of future requests.
-router.post('/login', async function(req, res) {
-  let email, contrasenya;
-
-  const authHeader = req.headers.authorization;
-  if (authHeader && authHeader.startsWith('Basic ')) {
-    try {
-        const base64Credentials = authHeader.split(' ')[1];
-        const credentials = Buffer.from(base64Credentials, 'base64').toString('utf-8');
-        const [userEmail, userPassword] = credentials.split(':');
-        email = userEmail;
-        contrasenya = userPassword;
-    } catch (err) {
-        return res.status(400).json({ message: 'Invalid Basic auth format.' });
-    }
-  } else if (req.body.email && req.body.password) {        
-    email = req.body.email;
-    contrasenya = req.body.password;
-  }
-
-  if (!email || !contrasenya) {
-    return res.json({
-      success: false,
-      message: 'Please enter email and password.'
-    });
-  }
-
-  const user = await User.findOne({ email: email });
-  if(!user) {
-    return res.json({
-      success: false,
-      message: 'Authentication failed. User not found.'
-    });
-  }
-
-  if(bcrypt.compareSync(contrasenya, user.password)){
-    // Create token if the password matched and no error was thrown
-    const payload = {
-      user_id: user.id,
-      timestamp: Date.now()
-      //you can add more data here if you want
-    };
-    console.log('payload', payload);
-    const token = jwt.sign(payload, config.auth.secret, {
-      expiresIn: "2 days"
-    });
-
-    res.json({
-      success: true,
-      data: {
-        token: token
-      }
-    });
-  } else {
-    res.send({
-      success: false,
-      message: 'Authentication failed. Passwords did not match.'
-    });
-  }
-});
-
-router.delete('/logout', passport.authenticate('jwt', {
-  session: false
-}), async function(req, res) {
-  res.json({
-    success: true,
-    data: {}
-  });
-});
+// Routes
+router.post('/register', JWTAuthController.register);
+router.post('/login', JWTAuthController.login);
+router.delete('/logout', ensureJWTAuthenticated, JWTAuthController.logout);
 
 module.exports = router;
