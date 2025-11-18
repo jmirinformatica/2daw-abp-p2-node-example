@@ -1,4 +1,4 @@
-# Exemple de nodejs i react amb see 
+# Exemple de nodejs i react amb Server-Sent Events (SEE) 
 
 Codi fet a partir d'aquest article:
 
