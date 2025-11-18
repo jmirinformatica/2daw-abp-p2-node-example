@@ -1,4 +1,4 @@
-# Exemple de nodejs amb websockets
+# Exemple de nodejs i react amb websockets
 
 Codi fet a partir d'aquests dos articles:
 

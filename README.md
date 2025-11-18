@@ -7,5 +7,6 @@ Codi d'exemple:
 * [2-api-crud](./2-api-crud/): exemple d'API a partir del repositori: https://github.com/rahmanfadhil/learn-express-mongoose
 * [3-auth](./3-auth/): exemple d'autenticació a partir del repositori https://github.com/bradtraversy/node_passport_login
 * [4-jwt](./4-jwt): exemple d'autenticació JWT a partir del repositori: https://github.com/KNTH01/express-jwt-mongoose-example
-* [5-ws-messages](./5-ws/): exemple bàsic de com fer servir websockets
-* [6-ws-notifications](./ws2/): exemple de com fer servir websockets per rebre notificacions
+* [5-ws-messages](./5-ws-messages/): exemple bàsic de com fer servir websockets
+* [6-ws-notifications](./6-ws-notifications/): exemple de com fer servir websockets per rebre notificacions
+* [7-see](./7-see/): exemple de com fer servir Server-Sent Events amb react a partir de: https://medium.com/@imanshurathore/server-sent-events-in-react-30021f9ffc4a
