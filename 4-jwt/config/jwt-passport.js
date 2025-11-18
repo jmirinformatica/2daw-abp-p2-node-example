@@ -15,6 +15,10 @@ module.exports = function(passport) {
     console.log('jwt_payload', jwt_payload);
     console.log('user', user);
     
-    done(null, user);
+    if (user && user.jwt_version === jwt_payload.jwt_version) {
+      done(null, user);
+    } else {
+      done(null, false);
+    }
   }));
 };

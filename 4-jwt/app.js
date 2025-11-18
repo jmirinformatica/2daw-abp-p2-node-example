@@ -1,3 +1,4 @@
+require('dotenv').config(); 
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
@@ -8,8 +9,8 @@ var passport = require('passport');
 
 var config = require('./config');
 
-var routes = require('./routes/index');
-var jwtAuth = require('./routes/jwt-auth');
+var indexRoutes = require('./routes/index');
+var jwtAuthRoutes = require('./routes/jwt-auth');
 
 var app = express();
 
@@ -38,8 +39,8 @@ app.use(passport.initialize());
 require('./config/jwt-passport')(passport);
 
 // Routes
-app.use('/', routes);
-app.use('/jwt-auth', jwtAuth);
+app.use('/', indexRoutes);
+app.use('/jwt-auth', jwtAuthRoutes);
 
 /**
  * Error handlers
