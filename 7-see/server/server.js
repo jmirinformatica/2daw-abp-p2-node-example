@@ -4,7 +4,7 @@ const cors = require('cors')
 const app = express();
 app.use(cors())
 
-app.get("/events", (_req, res, _next) => {
+app.get("/events", async (req, res) => {
   res.set({
     "Access-Control-Allow-Origin": "*",
     "Cache-Control": "no-cache",

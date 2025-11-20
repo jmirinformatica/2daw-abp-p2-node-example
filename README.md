@@ -10,3 +10,4 @@ Codi d'exemple:
 * [5-ws-messages](./5-ws-messages/): exemple bàsic de com fer servir websockets
 * [6-ws-notifications](./6-ws-notifications/): exemple de com fer servir websockets per rebre notificacions
 * [7-see](./7-see/): exemple de com fer servir Server-Sent Events amb react a partir de: https://medium.com/@imanshurathore/server-sent-events-in-react-30021f9ffc4a
+* [8-see-online](./8-see-online/): exemple de com fer servir Server-Sent Events per registrar quins clients hi ha online
